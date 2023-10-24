@@ -3,6 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
+import { BrutesModule } from './brutes/brutes.module';
+import { AchievementsModule } from './achievements/achievements.module';
+import { User } from './users/entities/user.entity';
+import { Brute } from './brutes/entities/brute.entity';
+import { Achievement } from './achievements/entities/achievement.entity';
 
 @Module({
   imports: [
@@ -13,9 +18,15 @@ import { UsersModule } from './users/users.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [],
+      entities: [
+        User,
+        Brute,
+        Achievement
+      ],
     }),
-    UsersModule
+    UsersModule,
+    BrutesModule,
+    AchievementsModule
   ],
   controllers: [AppController],
   providers: [AppService],
