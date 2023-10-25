@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BrutesService } from './brutes.service';
 import { CreateBruteDto } from './dto/create-brute.dto';
 import { UpdateBruteDto } from './dto/update-brute.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('brutes')
 @Controller('brutes')
 export class BrutesController {
   constructor(private readonly brutesService: BrutesService) {}
