@@ -8,7 +8,15 @@ describe('BrutesController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [BrutesController],
-      providers: [BrutesService],
+      providers: [
+        BrutesService,
+        {
+          provide: BrutesService,
+          useValue: {
+            getAll: jest.fn().mockResolvedValue([]),
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<BrutesController>(BrutesController);

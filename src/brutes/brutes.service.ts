@@ -1,26 +1,40 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBruteDto } from './dto/create-brute.dto';
 import { UpdateBruteDto } from './dto/update-brute.dto';
+import { Brute } from './entities/brute.entity';
+import {
+  DeleteResult,
+  FindOneOptions,
+  Repository,
+  UpdateResult,
+} from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BrutesService {
-  create(createBruteDto: CreateBruteDto) {
-    return 'This action adds a new brute';
+  constructor(
+    @InjectRepository(Brute)
+    private brutesRepository: Repository<Brute>,
+  ) {}
+
+  create(createBruteDto: CreateBruteDto): Promise<Brute> {
+    const brute = this.brutesRepository.create(createBruteDto);
+    return this.brutesRepository.save(brute);
   }
 
-  findAll() {
-    return `This action returns all brutes`;
+  findAll(): Promise<Brute[]> {
+    return this.brutesRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} brute`;
+  findOne(where: FindOneOptions<Brute>): Promise<Brute | null> {
+    return this.brutesRepository.findOne(where);
   }
 
-  update(id: number, updateBruteDto: UpdateBruteDto) {
-    return `This action updates a #${id} brute`;
+  update(id: number, updateBruteDto: UpdateBruteDto): Promise<UpdateResult> {
+    return this.brutesRepository.update({ id }, updateBruteDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} brute`;
+  remove(id: number): Promise<DeleteResult> {
+    return this.brutesRepository.delete(id);
   }
 }

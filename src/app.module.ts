@@ -18,15 +18,11 @@ import { Achievement } from './achievements/entities/achievement.entity';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [
-        User,
-        Brute,
-        Achievement
-      ],
+      entities: [User, Brute, Achievement],
     }),
     UsersModule,
     BrutesModule,
-    AchievementsModule
+    AchievementsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { BrutesService } from './brutes.service';
 import { CreateBruteDto } from './dto/create-brute.dto';
 import { UpdateBruteDto } from './dto/update-brute.dto';
@@ -21,7 +29,11 @@ export class BrutesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.brutesService.findOne(+id);
+    return this.brutesService.findOne({
+      where: {
+        id: +id,
+      },
+    });
   }
 
   @Patch(':id')
