@@ -1,6 +1,12 @@
-import { Achievement } from "src/achievements/entities/achievement.entity";
-import { Brute } from "src/brutes/entities/brute.entity";
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Achievement } from 'src/achievements/entities/achievement.entity';
+import { Brute } from 'src/brutes/entities/brute.entity';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export enum Lang {
   FR,

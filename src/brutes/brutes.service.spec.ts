@@ -6,7 +6,15 @@ describe('BrutesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [BrutesService],
+      providers: [
+        BrutesService,
+        {
+          provide: BrutesService,
+          useValue: {
+            getAll: jest.fn().mockResolvedValue([]),
+          },
+        },
+      ],
     }).compile();
 
     service = module.get<BrutesService>(BrutesService);
