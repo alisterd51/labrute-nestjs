@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 env:
-  NODE_VERSION: 20
+  NODE_VERSION: 21
 
 jobs:
   setup:
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [16, 18, 20]
+        node: [16, 18, 20, 21]
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [16, 18, 20]
+        node: [16, 18, 20, 21]
     services:
       postgres:
         image: postgres:16@sha256:3d9ed832906091d609cfd6f283e79492ace01ba15866b21d8a262e8fd1cdfb55
